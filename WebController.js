@@ -58,7 +58,7 @@ app.post('/track', (req, res) => {
       displaySymbol: validatedSymbol,
       displayRate: currentRate,
       displayTargetRate: targetRate,
-      displayTrackingRequestSubmitTime: new Date().toLocaleTimeString()       
+      displayTrackingRequestSubmitTime: new Date().toLocaleTimeString()
     });
   });
 });
@@ -88,9 +88,9 @@ function checkUserInputForErrors(req, res, callback) {
         else if (req.body.textBoxRate <= 0) {
           errors.push({ text: 'Please enter a target rate greater than zero.' });
         }
-        //Need to add validation to test whether or not the target rate has or has not already been met
-        // as soon as the submit button is hit.
-        //Set the direction >= or <= for rate checking
+        else if (req.body.textBoxRate == fetchedRate) {
+          errors.push({ text: 'This symbol is already at the target rate' });
+        }
 
         //Respond
         if (errors.length > 0) {
@@ -109,6 +109,7 @@ function checkUserInputForErrors(req, res, callback) {
 
           //If we do not get any errors, then proceed with the callback function.
         } else {
+          //callback(symbol, desiredRate, currentRate, isTheDesiredRateGreateThanTheCurrentRate); 
           callback(req.body.textBoxSymbol, req.body.textBoxRate, fetchedRate);
         }
       });

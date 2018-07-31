@@ -4,8 +4,7 @@
   "description": "",
   "main": "./WebController.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./WebController"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Christopher Hill and Luis Flores",
   "license": "",
@@ -16,5 +15,8 @@
     "mongodb": "^3.1.1",
     "mongoose": "^5.2.5",
     "xml2js": "^0.4.19"
+  },
+  "devDependencies": {
+    "typescript": "^3.1.0-dev.20180728"
   }
 }

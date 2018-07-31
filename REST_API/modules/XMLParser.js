@@ -1,9 +1,6 @@
 /*
-XMLParser will download the rates off of "https://rates.fxcm.com/RatesXML" and parse the results, 
-and store the data in json format inside "./data/newData.json".
-
+XMLParser will download the rates off of "https://rates.fxcm.com/RatesXML" and parse the results.
 Data will be in the following format:
-
 {"Rate":[
     {"Symbol":"EURUSD",
       "Bid":"1.16934",
@@ -19,31 +16,56 @@ Data will be in the following format:
       "Low":"111.245",
       "Direction":"1",
       "Last":"20:52:09"},
-    {"Symbol":"GBPUSD",
-      "Bid":"1.31008",
-      "Ask":"1.31012",
-      "High":"1.31064",
-      "Low":"1.3095",
-      "Direction":"-1",
-      "Last":"20:52:09"},
       ...etc
 */
 
+//Imports
 const download = require('download');
 const xml2js = require('xml2js');
-const parser = new xml2js.Parser({explicitArray: false, mergeAttrs: true, explicitRoot: false});
-const downloadUrl = 'https://rates.fxcm.com/RatesXML';
+
+//Exports
 module.exports.getData = getData;
 
-function getData(callback){
-  download(downloadUrl).then(data =>{
-    parser.parseString(data, function(error, result){
-      if(error){
-        console.log('parseString error : ', error);
-      }
-      else{
-        callback(result);
-      }
+//Module variables
+const parser = new xml2js.Parser({ explicitArray: false, mergeAttrs: true, explicitRoot: false });
+const downloadUrl = 'https://rates.fxcm.com/RatesXML';
+
+//Functions
+//getData downloads the data. On a download failure, will repeatedly try downloading until successful.
+//On a failed parse, the website must be corrupt, so it will log the error and stop.
+function getDataWithRetry(callback) {
+  download(downloadUrl)
+    .then((xmlData) => {
+      parseData(xmlData, callback);
+    })
+    .catch(() => {
+      retryDownload(callback);
     });
+}
+
+//This function gives up if it is unsuccessful in downloading the data.
+//Needed for interval parsing
+function getData(callback) {
+  download(downloadUrl)
+    .then((xmlData) => {
+      parseData(xmlData, callback);
+    });
+}
+
+function retryDownload(callback) {
+  console.log('Error downloading xml data.');
+  setTimeout(() => {
+    getData(callback);
+  }, 300);
+}
+
+function parseData(xmlData, callback) {
+  parser.parseString(xmlData, (error, parsedData) => {
+    if (error) {
+      console.log(error);
+    }
+    else {
+      callback(parsedData);
+    }
   });
 }

@@ -1,8 +1,16 @@
+//Imports
 const XMLParser = require('./modules/XMLParser');
 
+//Exports
+module.exports.retrieveCurrentSymbolRate = retrieveCurrentSymbolRate;
+module.exports.getSymbolPosition = getSymbolPosition;
+
+//Module variables
+
+//Functions
 //Given a valid symbol, retrieve the symbol's current rate.
 //If it is not found, then the callback function will pass back a null value.
-module.exports.retrieveCurrentSymbolRate = function retrieveCurrentSymbolRate(symbolToLookFor, callback) {
+function retrieveCurrentSymbolRate(symbolToLookFor, callback) {
   XMLParser.getData(function (result) {
     var symbolsRate = null;
     result.Rate.forEach((value, index, array) => {
@@ -14,16 +22,34 @@ module.exports.retrieveCurrentSymbolRate = function retrieveCurrentSymbolRate(sy
   });
 }
 
-//WILL DETERMINE 1. WHETHER THE INPUT SYMBOL IS FOUND 2. THE POSITION OF THE INPUT SYMBOL
-//Returns the index x inside of data array Rate[x] that contains the passed in symbol.
-//Will return null if it is not found within the Rate array.
-module.exports.getSymbolPosition = function getSymbolPosition(symbolToLookFor, callback) {
+function isSymbolValid(symbolToLookFor, callback) {
+  //Validate input
+  if (typeof symbolToLookFor != 'string') {
+    console.log('Error typeof symbolToLookFor != string');
+  }
+
+  XMLParser.getData((parsedData) => {
+    if (parsedData == null) {
+      console.log('Error data == null');
+    }
+    else {
+      var found = false;
+      parsedData.Rate.forEach((value) => {
+        if (value.Symbol.toUpperCase() == symbolToLookFor.toUpperCase()) {
+          found = true;
+        }
+      });
+      callback(found);
+    }
+  });
+}
+
+//Will return null if valid symbol not found.
+function getSymbolPosition(symbolToLookFor, callback) {
   XMLParser.getData(function (result) {
     var symbolIndex = null;
     result.Rate.forEach((value, index, array) => {
-      //console.log(JSON.stringify(value) + index);
       if (value.Symbol.toUpperCase() == symbolToLookFor.toUpperCase()) {
-        //console.log("Symbol " + value.Symbol + " found at position: " + index);
         symbolIndex = index;
       }
     });
