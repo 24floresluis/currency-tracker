@@ -19,10 +19,14 @@
 
 <br>
 
-<div class="card">
+<div {{startCardView}} class="card">
   <h5 class="card-header">Current Tracking Request:</h5>
   <div class="card-body">
     <h5 class="card-title">Tracked currency symbol {{displaySymbol}} had a rate of {{displayRate}} at {{displayTrackingRequestSubmitTime}}.</h5>
-    <h5 class="cart-title">An alert will be sent when {{displaySymbol}} reaches a value of {{displayTargetRate}}.</h5>
+    <h5 class="cart-title">A notification will be displayed when {{displaySymbol}} reaches a value of {{displayTargetRate}}.</h5>
   </div>
+</div>
+
+<div {{successNotifyView}} class="alert alert-success">
+  <strong>Target Reached!</strong> {{displaySymbol}} reached the target rate of {{displayRate}} at {{displayRateSuccessTime}}.
 </div>
