@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CurrencyTracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!--Add socket.io client support-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+  <!--Finished adding socket.io client support-->
+
+  <!--Add Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <!--Finished adding Bootstrap -->
+</head>
+
+<body>
+  <div class="container">
+    <div class="alert alert-primary" role="alert">
+      Please enter the symbol that you would like to track and your target bid rate below.
+    </div>
+    <div class="alert alert-secondary" role="alert">
+      Example: If you entered a target rate of 13.5 for symbol EURSEK when the current rate was 13, then you would recieve an alert
+      when EURSEK's bid rate reached 13.5 or greater.
+    </div>
+    <br>
+    <div class="alert alert-danger" id="inputErrorDisplayView">ALERT TEXT</div>
+    <div class="card card-body">
+      <h3>Set the tracked Symbol and Rate</h3>
+      <div class="form-group">
+        <label for="Symbol">Symbol To Track</label>
+        <input type="text" class="form-control" required id="textBoxSymbol" value="">
+      </div>
+      <div class="form-group">
+        <label for="Rate">Target Rate</label>
+        <input type="text" class="form-control" required id="textBoxRate" value="">
+      </div>
+      <button type="submit" class="btn btn-primary" id="btnSubmit">Track</button>
+      </form>
+    </div>
+    <br>
+    <div class="alert alert-success" id="trackingSubmittedView">ALERT TEXT</div>
+  </div>
+
+  <!--Add Bootstrap Scripts-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <!--Finished adding Bootstrap Scripts-->
+
+  <!--Add my own custom script-->
+  <script src="/index.js"></script>
+</body>
+
+</html>

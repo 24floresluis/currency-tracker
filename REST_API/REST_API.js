@@ -22,31 +22,9 @@ function retrieveCurrentSymbolRate(symbolToLookFor, callback) {
   });
 }
 
-function isSymbolValid(symbolToLookFor, callback) {
-  //Validate input
-  if (typeof symbolToLookFor != 'string') {
-    console.log('Error typeof symbolToLookFor != string');
-  }
-
-  XMLParser.getData((parsedData) => {
-    if (parsedData == null) {
-      console.log('Error data == null');
-    }
-    else {
-      var found = false;
-      parsedData.Rate.forEach((value) => {
-        if (value.Symbol.toUpperCase() == symbolToLookFor.toUpperCase()) {
-          found = true;
-        }
-      });
-      callback(found);
-    }
-  });
-}
-
 //Will return null if valid symbol not found.
 function getSymbolPosition(symbolToLookFor, callback) {
-  XMLParser.getData(function (result) {
+  XMLParser.getData((result) =>{
     var symbolIndex = null;
     result.Rate.forEach((value, index, array) => {
       if (value.Symbol.toUpperCase() == symbolToLookFor.toUpperCase()) {

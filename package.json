@@ -5,17 +5,14 @@
   "main": "./WebController.js",
   "scripts": {
     "test": "mocha || true",
-    "start": "nodemon ./WebController.js"
+    "start": "node ./WebController"
   },
   "author": "Christopher Hill and Luis Flores",
   "license": "",
   "dependencies": {
     "download": "^7.1.0",
     "express": "^4.16.3",
-    "express-handlebars": "^3.0.0",
-    "mongodb": "^3.1.1",
-    "mongoose": "^5.2.5",
-    "nodemon": "^1.18.3",
+    "socket.io": "^2.1.1",
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
