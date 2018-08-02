@@ -5,7 +5,7 @@ const scheduler = require('../modules/scheduler');
 //Unit Test
 describe('Scheduler', () => {
     describe('', ()=>{
-        it('test scheduler', (done)=> {
+        it('Scheduler test', (done)=> {
             done();
         })
     })
