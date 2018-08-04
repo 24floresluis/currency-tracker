@@ -40,9 +40,9 @@ app.get('/', (req, res) => {
 });
 
 function btnTrack(socket, data){
-  //Clear any previous tracking
-  clearIntervalParsing(socket);
   checkUserInputForErrors(socket, data, (symbol, desiredRate, rateAtTrackingStart) => {
+    //A new input without errors was submitted, so clear any previous tracking
+    clearIntervalParsing(socket);
     var timeAtTrackingStart = new Date().toLocaleTimeString();
     startTracking(socket, symbol, desiredRate, rateAtTrackingStart, timeAtTrackingStart)
   });
