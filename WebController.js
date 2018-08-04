@@ -68,6 +68,13 @@ function startTracking(socket, symbol, desiredRate, rateAtTrackingStart, timeAtT
 
 function startIndexPageIntervalParsing(validatedSymbol, targetRate, socket, rateDirection) {
   beginIntervalParsing(validatedSymbol, (currentRate) => {
+    //Update the client with the most recent rate
+    socket.emit('checkCurrentRate', {
+      currentRate: currentRate,
+      symbol: validatedSymbol
+    });
+
+    //If the target rate has been reached, then notify the client
     if (rateDirection == 'up' && (parseFloat(currentRate) >= parseFloat(targetRate))) {
       var rateSuccessTime = new Date().toLocaleTimeString();
       clearIntervalParsing();
