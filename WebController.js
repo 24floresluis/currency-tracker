@@ -8,6 +8,9 @@ const getSymbolPosition = require('./REST_API/REST_API').getSymbolPosition;
 const retrieveCurrentSymbolRate = require('./REST_API/REST_API').retrieveCurrentSymbolRate;
 const beginIntervalParsing = require('./modules/scheduler').beginIntervalParsing;
 
+//Exporting app
+module.exports = app;
+
 //Required Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

@@ -8,8 +8,8 @@ const getData = require('../REST_API/modules/XMLParser').getData;
 
 
 describe('REST_API', () => {
-    describe('#getSymbolPosition', ()=> {
-        it('getSymbolPosition test', (done)=> {
+    describe('#getSymbolPosition()', ()=> {
+        it.skip('should return a number index', (done)=> {
             getData((parsedData)=> {
                 //console.log(Object.values(parsedData.Rate.EURUSD).Bid); 
 
@@ -19,14 +19,16 @@ describe('REST_API', () => {
             // restapi.getSymbolPosition(()=> {
 
             // })
-            done();
         })
+
+        it('Should find a valid currency pair symbol')
     })
 
-    describe('#retrieveCurrentSymbolRate', ()=> {
-        it('retrieveCurrentSymbolRate test', (done)=> {
+    describe('#retrieveCurrentSymbolRate()', ()=> {
+        it.skip('should return a currency pair symbol bid rate', (done)=> {
             done()
         })
+        it('should return currency pair rate as a number type')
     })
 
 })
