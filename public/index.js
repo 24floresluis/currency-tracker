@@ -19,13 +19,12 @@ btnSubmit.addEventListener('click', () => {
     textBoxRate: textBoxRate.value
   });
 
-  //Reset the page
+  //Clear the input boxes to conform to user story #2 acceptance criteria #2
   textBoxSymbol.value = "";
   textBoxRate.value = "";
+  //Reset the errors
   inputErrorDisplayView.innerHTML = "";
   inputErrorDisplayView.style.display = 'none';
-  trackingSubmittedView.innerHTML = "";
-  trackingSubmittedView.style.display = 'none';
 });
 
 //Add Socket Listeners
@@ -38,6 +37,10 @@ clientSocket.on('inputError', (data) => {
 });
 
 clientSocket.on('startTracking', (data) => {
+  //On a successful tracking submit, reset the page.
+  trackingSubmittedView.innerHTML = "";
+  trackingSubmittedView.style.display = 'none';
+
   //Data : {symbol: symbol, desiredRate: desiredRate, rateAtTrackingStart: rateAtTrackingStart, timeAtTrackingStart: timeAtTrackingStart
   trackingSubmittedView.innerHTML = "Tracking request successfully submitted for " + data.symbol + " at " + new Date().toLocaleTimeString() + "." +
     " <br />" + " An alert will be sent once the bid rate reaches " + data.desiredRate + ".";
