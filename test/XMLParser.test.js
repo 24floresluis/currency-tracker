@@ -16,9 +16,7 @@ describe('XMLParser',() => {
 
         it('getData() object symbols should contain Bid of number type', function(done) {
             XMLParser.getData((parsedData)=> {
-                //console.log(parsedData.Rate.; 
                 parsedData.Rate.forEach(element => {
-                    //console.log(typeof parseFloat(element.Bid));
                     assert.typeOf(parseFloat(element.Bid), 'number', "Bid is not number type");
                 });
                 done();   
@@ -29,9 +27,7 @@ describe('XMLParser',() => {
 
         it('getData() object symbols should contain Ask of number type', function(done) {
             XMLParser.getData((parsedData)=> {
-                //console.log(parsedData.Rate.; 
                 parsedData.Rate.forEach(element => {
-                    //console.log(typeof parseFloat(element.Bid));
                     assert.typeOf(parseFloat(element.Ask), 'number', "Ask is not number type");
                 });
                 done();   
@@ -40,9 +36,7 @@ describe('XMLParser',() => {
 
         it('getData() object symbols should contain High of number type', function(done) {
             XMLParser.getData((parsedData)=> {
-                //console.log(parsedData.Rate.; 
                 parsedData.Rate.forEach(element => {
-                    //console.log(typeof parseFloat(element.Bid));
                     assert.typeOf(parseFloat(element.High), 'number', "High is not number type");
                 });
                 done();   
@@ -51,9 +45,7 @@ describe('XMLParser',() => {
 
         it('getData() object symbols should contain Low of number type', function(done) {
             XMLParser.getData((parsedData)=> {
-                //console.log(parsedData.Rate.; 
                 parsedData.Rate.forEach(element => {
-                    //console.log(typeof parseFloat(element.Bid));
                     assert.typeOf(parseFloat(element.Low), 'number', "Low is not number type");
                 });
                 done();   
@@ -62,32 +54,13 @@ describe('XMLParser',() => {
 
         it('getData() object symbols should contain Direction value either 1,0,-1', function(done) {
             XMLParser.getData((parsedData)=> {
-                //console.log(parsedData.Rate.; 
                 parsedData.Rate.forEach(element => {
-                    //console.log(typeof parseFloat(element.Bid));
                     expect(element.Direction).to.have.any.keys
                     ('-1','0','1');
                 });
                 done();   
             });            
         });
-
-        // it('getData() object symbols should contain Last value in Date/Time fomat', function(done) {
-        //     XMLParser.getData((parsedData)=> {
-        //         //console.log(parsedData.Rate.; 
-        //         parsedData.Rate.forEach(element => {
-        //             //console.log(typeof parseFloat(element.Bid));
-        //             console.log(element.Last);
-                    
-        //         });
-        //         done();   
-        //     });            
-        // });
-
-
-
-
-
     });
 });
 
