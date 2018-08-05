@@ -29,7 +29,6 @@ function getSymbolPosition(symbolToLookFor, callback) {
     result.Rate.forEach((value, index, array) => {
       if (value.Symbol.toUpperCase() == symbolToLookFor.toUpperCase()) {
         symbolIndex = index;
-        console.log(index.toString());
       }
     });
     callback(symbolIndex);

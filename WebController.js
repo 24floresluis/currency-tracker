@@ -39,6 +39,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
+//GET 404
+app.get('*', (req,res) => {
+  res.status(404).send('PAGE NOT FOUND')
+})
+
 function btnTrack(socket, data){
   checkUserInputForErrors(socket, data, (symbol, desiredRate, rateAtTrackingStart) => {
     //A new input without errors was submitted, so clear any previous tracking
